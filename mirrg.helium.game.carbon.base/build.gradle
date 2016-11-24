@@ -25,6 +25,10 @@ dependencies {
 	//compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
 	//compile group: 'mirrg', name: 'mirrg.struct.hydrogen-1.0', version: '+'
 
+	compile 'mirrg:mirrg.helium.standard.hydrogen.event:+'
+
+	compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.9'
+
 }
 
 // ★追加のリポジトリURL
@@ -32,6 +36,7 @@ def mavenRepositories = [
 
 	//'https://raw.githubusercontent.com/MirrgieRiana/mirrg.struct.hydrogen/master/maven',
 	//'http://hg.pf.osdn.jp/view/t/ta/tacticsrealize/mirrg.struct.hydrogen/raw-file/tip/maven',
+	'https://raw.githubusercontent.com/MirrgieRiana/mirrg.helium.standard/master/maven',
 
 ]
 
