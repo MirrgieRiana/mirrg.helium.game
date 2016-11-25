@@ -27,6 +27,12 @@ public class ModelCarbon<G extends GameCarbon<?, ?>>
 
 	}
 
+	public void getAllModels(Consumer<ModelCarbon<? super G>> dest)
+	{
+		dest.accept(this);
+		getChildModels(dest);
+	}
+
 	/**
 	 * XStreamによって生成された直後に呼び出されなければならない。
 	 */

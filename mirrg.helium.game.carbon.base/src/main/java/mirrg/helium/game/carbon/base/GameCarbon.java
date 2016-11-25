@@ -1,6 +1,7 @@
 package mirrg.helium.game.carbon.base;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -66,6 +67,11 @@ public class GameCarbon<THIS extends GameCarbon<THIS, MODEL>, MODEL extends Mode
 	public void addTool(ControllerCarbon<? super THIS> tool)
 	{
 		tools.add(tool);
+	}
+
+	public Stream<ControllerCarbon<? super THIS>> getTools()
+	{
+		return tools.stream();
 	}
 
 }
