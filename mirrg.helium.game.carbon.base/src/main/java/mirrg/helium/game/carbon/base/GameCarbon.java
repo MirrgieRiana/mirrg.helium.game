@@ -10,11 +10,6 @@ import mirrg.helium.standard.hydrogen.event.EventManager;
 public class GameCarbon<THIS extends GameCarbon<THIS, MODEL>, MODEL extends ModelCarbon<THIS>>
 {
 
-	public GameCarbon(MODEL model)
-	{
-		setModel(model);
-	}
-
 	@SuppressWarnings("unchecked")
 	private THIS getThis()
 	{
@@ -43,7 +38,7 @@ public class GameCarbon<THIS extends GameCarbon<THIS, MODEL>, MODEL extends Mode
 	{
 		event().post(new EventGameCarbon.ChangeModel.Pre());
 
-		model.initialize(getThis());
+		if (model != null) model.initialize(getThis());
 		MODEL tmp = this.model;
 		this.model = model;
 		if (tmp != null) tmp.dispose();
