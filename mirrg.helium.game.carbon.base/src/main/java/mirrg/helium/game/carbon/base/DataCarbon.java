@@ -32,8 +32,8 @@ public class DataCarbon<G extends GameCarbon<?, ?>>
 	 */
 	public void initialize(G game)
 	{
-		entity = createEntity(game);
 		getChildren(d -> d.initialize(game));
+		entity = createEntity(game);
 	}
 
 	public void dispose()
