@@ -46,7 +46,7 @@ public class GameCarbon<THIS extends GameCarbon<THIS, DATA>, DATA extends DataCa
 		data.initialize(getThis());
 		DATA tmp = this.data;
 		this.data = data;
-		tmp.dispose();
+		if (tmp != null) tmp.dispose();
 
 		event().post(new EventGameCarbon.ChangeData.Post());
 	}
