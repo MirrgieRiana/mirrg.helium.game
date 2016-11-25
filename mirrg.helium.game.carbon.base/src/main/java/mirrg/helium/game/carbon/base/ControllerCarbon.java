@@ -4,12 +4,12 @@ import java.util.function.Consumer;
 
 import mirrg.helium.standard.hydrogen.event.EventManager;
 
-public abstract class EntityCarbon<G extends GameCarbon<?, ?>>
+public abstract class ControllerCarbon<G extends GameCarbon<?, ?>>
 {
 
 	protected final G game;
 
-	public EntityCarbon(G game)
+	public ControllerCarbon(G game)
 	{
 		this.game = game;
 	}

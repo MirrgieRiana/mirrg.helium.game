@@ -1,18 +1,17 @@
 package mirrg.helium.game.carbon.base;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 import com.thoughtworks.xstream.XStream;
 
 import mirrg.helium.standard.hydrogen.event.EventManager;
 
-public class GameCarbon<THIS extends GameCarbon<THIS, DATA>, DATA extends DataCarbon<THIS>>
+public class GameCarbon<THIS extends GameCarbon<THIS, MODEL>, MODEL extends ModelCarbon<THIS>>
 {
 
-	public GameCarbon(DATA data)
+	public GameCarbon(MODEL model)
 	{
-		setData(data);
+		setModel(model);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -32,23 +31,23 @@ public class GameCarbon<THIS extends GameCarbon<THIS, DATA>, DATA extends DataCa
 
 	//
 
-	private DATA data;
+	private MODEL model;
 
-	public DATA getData()
+	public MODEL getModel()
 	{
-		return data;
+		return model;
 	}
 
-	public void setData(DATA data)
+	public void setModel(MODEL model)
 	{
-		event().post(new EventGameCarbon.ChangeData.Pre());
+		event().post(new EventGameCarbon.ChangeModel.Pre());
 
-		data.initialize(getThis());
-		DATA tmp = this.data;
-		this.data = data;
+		model.initialize(getThis());
+		MODEL tmp = this.model;
+		this.model = model;
 		if (tmp != null) tmp.dispose();
 
-		event().post(new EventGameCarbon.ChangeData.Post());
+		event().post(new EventGameCarbon.ChangeModel.Post());
 	}
 
 	//
@@ -62,19 +61,11 @@ public class GameCarbon<THIS extends GameCarbon<THIS, DATA>, DATA extends DataCa
 
 	//
 
-	private ArrayList<EntityCarbon<? super THIS>> tools = new ArrayList<>();
+	private ArrayList<ControllerCarbon<? super THIS>> tools = new ArrayList<>();
 
-	public void addTool(EntityCarbon<? super THIS> tool)
+	public void addTool(ControllerCarbon<? super THIS> tool)
 	{
 		tools.add(tool);
-	}
-
-	//
-
-	public void getEntities(Consumer<EntityCarbon<? super THIS>> dest)
-	{
-		tools.forEach(dest::accept);
-		data.getEntities(dest);
 	}
 
 }
