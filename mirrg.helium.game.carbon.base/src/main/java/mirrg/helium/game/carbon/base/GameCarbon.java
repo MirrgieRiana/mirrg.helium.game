@@ -29,19 +29,18 @@ public class GameCarbon<THIS extends GameCarbon<THIS, MODEL>, MODEL extends Mode
 
 	private MODEL model;
 
-	public MODEL getModel()
+	public synchronized MODEL getModel()
 	{
 		return model;
 	}
 
-	public void setModel(MODEL model)
+	public synchronized void setModel(MODEL model)
 	{
 		event().post(new EventGameCarbon.ChangeModel.Pre());
 
-		if (model != null) model.initialize(getThis());
-		MODEL tmp = this.model;
+		if (this.model != null) this.model.dispose();
 		this.model = model;
-		if (tmp != null) tmp.dispose();
+		if (model != null) model.initialize(getThis());
 
 		event().post(new EventGameCarbon.ChangeModel.Post());
 	}
